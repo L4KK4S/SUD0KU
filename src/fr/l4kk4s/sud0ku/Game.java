@@ -35,6 +35,24 @@ public class Game {
 
     }
 
+    private String characterWithColor(String character, String color){
+
+        switch (color) {
+            case "red":
+                return "\u001B[31m" + character + "\u001B[0m";
+            case "green":
+                return "\u001B[32m" + character + "\u001B[0m";
+            case "yellow":
+                return "\u001B[33m" + character + "\u001B[0m";
+            case "white":
+                return "\u001B[37m" + character + "\u001B[0m";
+            default:
+                System.out.println("Error: color not found");
+                return character;
+        }
+
+    }
+
     public void displayGrid() {
 
         System.out.println("\u001B[35m+---+---+---+---+---+---+---+---+---+");
@@ -45,10 +63,10 @@ public class Game {
 
             for (int column = 0; column < 9; column++) {
 
-                if (cells[row][column].value == -1) {
-                    System.out.print("\u001B[0m ");
+                if (cells[row][column].value != -1) {
+                    System.out.print(characterWithColor(String.valueOf(cells[row][column].value) , "white"));
                 } else {
-                    System.out.print("\u001B[0m" + cells[row][column].value);
+                    System.out.print("\u001B[0m\u00A0");
                 }
 
 
