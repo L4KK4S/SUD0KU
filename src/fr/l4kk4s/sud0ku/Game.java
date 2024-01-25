@@ -53,6 +53,10 @@ public class Game {
 
     }
 
+    private String checkCursor(int value){
+        return value < 0 ? "green" : "white";
+    }
+
     public void displayGrid() {
 
         System.out.println("\u001B[35m+---+---+---+---+---+---+---+---+---+");
@@ -63,8 +67,10 @@ public class Game {
 
             for (int column = 0; column < 9; column++) {
 
-                if (cells[row][column].value != -1) {
-                    System.out.print(characterWithColor(String.valueOf(cells[row][column].value) , "white"));
+                if (cells[row][column].value == -10){
+                    System.out.print(characterWithColor("█", "green"));
+                } else if (cells[row][column].value != 10) {
+                    System.out.print(characterWithColor(String.valueOf(Math.abs(cells[row][column].value)) , checkCursor(cells[row][column].value)));
                 } else {
                     System.out.print("\u001B[0m\u00A0");
                 }
